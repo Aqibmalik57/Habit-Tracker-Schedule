@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weekly Routine Wall Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap");
+
+      :root {
+        --pkt-blue: #2563eb;
+        --pkt-emerald: #10b981;
+        --pkt-slate: #0f172a;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: #f1f5f9;
+        color: #1e293b;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      .glass-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .uni-tag {
+        background: #dbeafe;
+        color: #1e40af;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .free-tag {
+        background: #d1fae5;
+        color: #065f46;
+        font-size: 10px;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .task-row {
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+      }
+
+      .task-row:last-child {
+        border-bottom: none;
+      }
+
+      .task-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2px;
+      }
+
+      .task-details {
+        font-size: 9px;
+        line-height: 1.2;
+        color: #64748b;
+      }
+
+      @media print {
+        .no-print {
+          display: none !important;
+        }
+        body {
+          background: white;
+          padding: 0;
+        }
+        .print-container {
+          box-shadow: none;
+          border: none;
+          max-width: 100%;
+          margin: 0;
+          padding: 10px;
+        }
+        .glass-card {
+          border: 1px solid #ddd;
+          break-inside: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body class="p-4 lg:p-6">
+    <!-- NAVIGATION / ACTIONS -->
+    <div
+      class="no-print max-w-[1600px] mx-auto mb-6 flex flex-col md:flex-row justify-between items-center bg-white p-5 rounded-[2rem] shadow-sm border border-slate-200 gap-4"
+    >
+      <div class="flex items-center gap-4">
+        <div
+          class="w-12 h-12 bg-slate-900 rounded-2xl flex items-center justify-center text-white shadow-xl"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+            />
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight">
+            Master Routine Dashboard
+          </h1>
+        </div>
+      </div>
+
+     
+        <div class="flex gap-2">
+          <a href="/HabbitTracker.html"
+            class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 px-6 rounded-2xl transition text-sm"
+          >
+            Habbit Tracker
+          </a>
+          <button
+            onclick="downloadImage()"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-2xl shadow-lg shadow-blue-100 transition text-sm"
+          >
+            Download HD Image
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN PRINTABLE CONTAINER -->
+    <div
+      id="chart-capture"
+      class="print-container max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6"
+    >
+      <!-- LEFT COLUMN -->
+      <div class="lg:col-span-3 space-y-6">
+        <div class="bg-slate-900 rounded-[2.5rem] p-8 text-white shadow-2xl">
+          <h3
+            class="text-blue-400 text-[10px] font-black uppercase tracking-[0.3em] mb-6"
+          >
+            Subconscious Mastery
+          </h3>
+          <div class="space-y-6">
+            <div>
+              <p
+                class="text-xs font-bold text-white mb-2 underline decoration-blue-500 underline-offset-4"
+              >
+                The Alpha State
+              </p>
+              <p class="text-[11px] text-slate-400 leading-relaxed italic">
+                Your brain is a sponge between 05:00–05:30 AM. Do not look at
+                your phone. Whatever you think during this window becomes your
+                reality.
+              </p>
+            </div>
+            <div>
+              <p
+                class="text-xs font-bold text-white mb-2 underline decoration-blue-500 underline-offset-4"
+              >
+                Identity Shifting
+              </p>
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                Stop saying "I want to be a coder." Say "I am a high-value
+                Engineer." The subconscious only acts on present-tense identity.
+              </p>
+            </div>
+            <div>
+              <p
+                class="text-xs font-bold text-white mb-2 underline decoration-blue-500 underline-offset-4"
+              >
+                Visual Anchor
+              </p>
+              <p class="text-[11px] text-slate-400 leading-relaxed italic">
+                Close your eyes for 2 mins while stretching. See your future
+                project finished. Feel the success. This "pre-plays" the win.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="bg-white rounded-[2.5rem] p-8 border border-slate-200 shadow-sm"
+        >
+          <h3
+            class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em] mb-6"
+          >
+            Manifestation Lines
+          </h3>
+          <ul class="space-y-4">
+            <li class="text-xs font-bold text-slate-700 leading-tight">
+              "I am the architect of my discipline."
+            </li>
+            <li class="text-xs font-bold text-slate-700 leading-tight">
+              "My focus increases every time I resist a distraction."
+            </li>
+            <li class="text-xs font-bold text-slate-700 leading-tight">
+              "I attract high-paying opportunities through my mastery."
+            </li>
+            <li class="text-xs font-bold text-slate-700 leading-tight">
+              "Today’s effort is my future’s freedom."
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-blue-50 rounded-[2.5rem] p-8 border border-blue-100">
+          <h3
+            class="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em] mb-6"
+          >
+            Elite Life Hacks
+          </h3>
+          <div class="space-y-4">
+            <div class="flex gap-3">
+              <span class="text-lg">💧</span>
+              <p class="text-[11px] font-semibold text-slate-600">
+                Drink 500ml water @ 05:01 AM. Instantly wakes up the brain.
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-lg">🔋</span>
+              <p class="text-[11px] font-semibold text-slate-600">
+                The 90-Minute Rule: Work for 90 mins, then 10 mins eyes closed
+                rest.
+              </p>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-lg">📵</span>
+              <p class="text-[11px] font-semibold text-slate-600">
+                Phone in a different room during Skill Practice blocks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="lg:col-span-9 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div
+            class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4"
+          >
+            <div class="text-2xl">🌅</div>
+            <div>
+              <p class="text-[10px] font-black text-blue-600 uppercase">
+                Morning Rule
+              </p>
+              <p class="text-xs font-bold text-slate-800">
+                Skill + Learning (05:00 AM - 09:00 AM)
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4"
+          >
+            <div class="text-2xl">🏃</div>
+            <div>
+              <p class="text-[10px] font-black text-emerald-600 uppercase">
+                Afternoon Rule
+              </p>
+              <p class="text-xs font-bold text-slate-800">
+                Health Jog (04:30 PM - 05:30 PM)
+              </p>
+            </div>
+          </div>
+          <div
+            class="bg-white p-6 rounded-3xl border border-slate-200 flex items-center gap-4"
+          >
+            <div class="text-2xl">🌇</div>
+            <div>
+              <p class="text-[10px] font-black text-rose-600 uppercase">
+                Night Rule
+              </p>
+              <p class="text-xs font-bold text-slate-800">
+                Relax & Reset (08:30 PM - 10:00 PM)
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WEEKLY GRID -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <!-- MONDAY -->
+          <div class="glass-card p-6 shadow-sm border-t-4 border-t-blue-600">
+            <div class="flex justify-between items-start mb-4">
+              <h4 class="font-black text-lg header-font">MONDAY</h4>
+              <span class="uni-tag">7.5h UNI</span>
+            </div>
+            <div class="space-y-1">
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:00 AM-05:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Wake & Fresh</span>
+                </div>
+                <div class="task-details">
+                  Brush, wash face, make bed. Purpose: Discipline.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:30 AM-06:00 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Light Stretch</span>
+                </div>
+                <div class="task-details">
+                  Stretches/body movement. Purpose: Wake body.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >06:00 AM-06:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Breakfast</span>
+                </div>
+                <div class="task-details">
+                  Healthy food & water. Purpose: Brain fuel.
+                </div>
+              </div>
+              <div class="task-row bg-blue-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-blue-600"
+                    >06:30 AM-09:00 AM</span
+                  >
+                  <span class="text-[11px] font-black"
+                    >Skill Practice (2.5h)</span
+                  >
+                </div>
+                <div class="task-details">
+                  Coding/Problems. Purpose: Career building.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >09:00 AM-09:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Book Reading</span>
+                </div>
+                <div class="task-details">
+                  Tech/Productivity. Purpose: Improved thinking.
+                </div>
+              </div>
+              <div class="task-row bg-slate-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >09:30 AM-04:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Uni Classes</span>
+                </div>
+                <div class="task-details">
+                  Attend & take notes. Purpose: Academic progress.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-600"
+                    >04:30 PM-05:15 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Jogging (45m)</span>
+                </div>
+                <div class="task-details">
+                  Brisk run/walk. Purpose: Refresh & stamina.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:30 PM-06:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Lunch & Rest</span>
+                </div>
+                <div class="task-details">
+                  Eat & Relax. Purpose: Energy recovery.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >06:30 PM-07:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">New Learning</span>
+                </div>
+                <div class="task-details">
+                  Tutorials/Topics. Purpose: Skill growth.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >07:30 PM-08:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Productive Work</span>
+                </div>
+                <div class="task-details">
+                  Assignments/Projects. Purpose: Apply skills.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >08:30 PM-09:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Light Practice</span>
+                </div>
+                <div class="task-details">
+                  Revise/Small Code. Purpose: Memory strength.
+                </div>
+              </div>
+              <div class="task-row bg-rose-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-rose-600"
+                    >09:00 PM-09:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Fun / Relax</span>
+                </div>
+                <div class="task-details">
+                  Entertainment/Family. Purpose: Burnout reset.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- TUESDAY (FREE) -->
+          <div
+            class="glass-card p-6 shadow-sm border-t-4 border-t-emerald-500 bg-emerald-50/10"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h4 class="font-black text-lg header-font text-emerald-700">
+                TUESDAY
+              </h4>
+              <span class="free-tag">FREE DAY</span>
+            </div>
+            <div class="space-y-1">
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:00 AM-06:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Morning Start</span>
+                </div>
+                <div class="task-details">
+                  Stretch & Breakfast. Purpose: Routine.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-100/50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-700"
+                    >06:30 AM-09:30 AM</span
+                  >
+                  <span class="text-[11px] font-black"
+                    >Skill Practice (3h)</span
+                  >
+                </div>
+                <div class="task-details">
+                  Build real projects. Purpose: Major growth.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >09:30 AM-11:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Rest / Breakfast</span>
+                </div>
+                <div class="task-details">
+                  Recover energy. Purpose: Maintain focus.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >11:30 AM-12:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Practice Session</span>
+                </div>
+                <div class="task-details">
+                  Implement concepts. Purpose: Skill conversion.
+                </div>
+              </div>
+              <div class="task-row bg-blue-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-blue-700"
+                    >01:00 PM-05:00 PM</span
+                  >
+                  <span class="text-[11px] font-black">Prod Work (4h)</span>
+                </div>
+                <div class="task-details">
+                  No distractions. Purpose: High output.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-100 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-700"
+                    >05:00 PM-06:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Jogging (1h)</span>
+                </div>
+                <div class="task-details">
+                  Run for stamina. Purpose: Stress reduction.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >06:00 PM-08:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">New Learn (2h)</span>
+                </div>
+                <div class="task-details">
+                  Documentation/Tutorials. Purpose: Stay updated.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >08:00 PM-09:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Book Reading</span>
+                </div>
+                <div class="task-details">
+                  Self-Growth. Purpose: Better discipline.
+                </div>
+              </div>
+              <div class="task-row bg-rose-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-rose-600"
+                    >09:00 PM-11:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Fun / Relax (2h)</span>
+                </div>
+                <div class="task-details">
+                  Deep hobby time. Purpose: Mental refresh.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- WED & THU -->
+          <div class="glass-card p-6 shadow-sm border-t-4 border-t-indigo-500">
+            <div class="flex justify-between items-start mb-4">
+              <h4 class="font-black text-lg header-font">WED & THU</h4>
+              <span class="uni-tag">6.5h UNI</span>
+            </div>
+            <div class="space-y-1">
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:00 AM-06:00 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Routine & Fresh</span>
+                </div>
+                <div class="task-details">
+                  Morning cleaning. Purpose: Clean start.
+                </div>
+              </div>
+              <div class="task-row bg-indigo-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-indigo-600"
+                    >06:00 AM-07:30 AM</span
+                  >
+                  <span class="text-[11px] font-black"
+                    >Skill Practice (1.5h)</span
+                  >
+                </div>
+                <div class="task-details">
+                  Coding Focus. Purpose: Build skills.
+                </div>
+              </div>
+              <div class="task-row bg-slate-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >07:30 AM-02:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Uni Classes</span>
+                </div>
+                <div class="task-details">
+                  Attend & Stay attentive. Purpose: Academic.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >02:00 PM-04:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Lunch & Rest (2.5h)</span>
+                </div>
+                <div class="task-details">
+                  Heavy Nap. Purpose: Brain recovery.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-600"
+                    >04:30 PM-05:15 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Jogging (45m)</span>
+                </div>
+                <div class="task-details">
+                  Jog/Brisk Walk. Purpose: Physical health.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:15 PM-05:45 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Light Stretch</span>
+                </div>
+                <div class="task-details">
+                  Stretch limbs. Purpose: Prevent stiffness.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >06:00 PM-07:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">New Learning</span>
+                </div>
+                <div class="task-details">
+                  Watch tutorials. Purpose: Keep growing.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >07:00 PM-08:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Revision / Read</span>
+                </div>
+                <div class="task-details">
+                  Concept review. Purpose: Memory retention.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >08:00 PM-08:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Book Reading</span>
+                </div>
+                <div class="task-details">
+                  Take 1-2 key notes. Purpose: Growth.
+                </div>
+              </div>
+              <div class="task-row bg-rose-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-rose-600"
+                    >08:30 PM-09:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Fun / Relax (1h)</span>
+                </div>
+                <div class="task-details">
+                  Movie/Games. Purpose: Mental reset.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FRIDAY (FREE) -->
+          <div
+            class="glass-card p-6 shadow-sm border-t-4 border-t-emerald-500 bg-emerald-50/10"
+          >
+            <div class="flex justify-between items-start mb-4">
+              <h4 class="font-black text-lg header-font text-emerald-700">
+                FRIDAY
+              </h4>
+              <span class="free-tag">FREE DAY</span>
+            </div>
+            <div class="space-y-1">
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >05:00 AM-06:30 AM</span
+                  >
+                  <span class="text-[11px] font-bold">Morning Start</span>
+                </div>
+                <div class="task-details">
+                  Freshen & Food. Purpose: Discipline.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-100/50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-700"
+                    >06:30 AM-09:30 AM</span
+                  >
+                  <span class="text-[11px] font-black"
+                    >Skill Practice (3h)</span
+                  >
+                </div>
+                <div class="task-details">
+                  Focused Coding. Purpose: Major Progress.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >11:30 AM-12:30 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Practice Apply</span>
+                </div>
+                <div class="task-details">
+                  Try examples. Purpose: Mastering theory.
+                </div>
+              </div>
+              <div class="task-row bg-blue-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-blue-700"
+                    >01:00 PM-05:00 PM</span
+                  >
+                  <span class="text-[11px] font-black">Prod Work (4h)</span>
+                </div>
+                <div class="task-details">
+                  Assignments/Jobs. Purpose: Output.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-100 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-700"
+                    >05:00 PM-06:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Jogging (1h)</span>
+                </div>
+                <div class="task-details">
+                  Run/Brisk Walk. Purpose: Heart health.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >06:00 PM-08:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">New Learn (2h)</span>
+                </div>
+                <div class="task-details">
+                  Concepts/Topics. Purpose: Skill update.
+                </div>
+              </div>
+              <div class="task-row bg-rose-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-rose-600"
+                    >09:00 PM-11:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Fun / Relax (2h)</span>
+                </div>
+                <div class="task-details">
+                  Hobby/Family. Purpose: Social/Mental.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SATURDAY -->
+          <div class="glass-card p-6 shadow-sm border-t-4 border-t-amber-500">
+            <div class="flex justify-between items-start mb-4">
+              <h4 class="font-black text-lg header-font">SATURDAY</h4>
+              <span class="uni-tag">5h UNI</span>
+            </div>
+            <div class="space-y-1">
+              <div class="task-row bg-amber-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-amber-700"
+                    >06:30 AM-09:30 AM</span
+                  >
+                  <span class="text-[11px] font-black">Skill Grind (3h)</span>
+                </div>
+                <div class="task-details">
+                  Project builds. Purpose: Skill mastery.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >09:30 AM-11:00 AM</span
+                  >
+                  <span class="text-[11px] font-bold">New Learning</span>
+                </div>
+                <div class="task-details">
+                  Learn topics. Purpose: Broadening horizons.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >11:00 AM-12:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Practice Apply</span>
+                </div>
+                <div class="task-details">
+                  Implementation. Purpose: Active learning.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >12:00 PM-01:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Lunch & Rest</span>
+                </div>
+                <div class="task-details">
+                  Recover. Purpose: Prepare for Uni.
+                </div>
+              </div>
+              <div class="task-row bg-slate-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >01:00 PM-06:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Uni Classes</span>
+                </div>
+                <div class="task-details">
+                  Academic focus. Purpose: Completion.
+                </div>
+              </div>
+              <div class="task-row bg-emerald-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-emerald-600"
+                    >06:00 PM-06:45 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Jogging (45m)</span>
+                </div>
+                <div class="task-details">
+                  Physical reset. Purpose: Stress relief.
+                </div>
+              </div>
+              <div class="task-row">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-slate-500"
+                    >07:00 PM-08:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Reading/Revise</span>
+                </div>
+                <div class="task-details">
+                  Review notes. Purpose: Retention.
+                </div>
+              </div>
+              <div class="task-row bg-rose-50 px-2 rounded">
+                <div class="task-title">
+                  <span class="text-[10px] font-bold text-rose-600"
+                    >08:00 PM-09:00 PM</span
+                  >
+                  <span class="text-[11px] font-bold">Fun / Relax (1h)</span>
+                </div>
+                <div class="task-details">
+                  Social/Game. Purpose: Saturday break.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUNDAY RESET -->
+          <div
+            class="glass-card p-6 shadow-xl border-t-4 border-t-slate-900 bg-slate-900 text-white"
+          >
+            <div class="flex justify-between items-start mb-6">
+              <h4 class="font-black text-lg header-font text-blue-400">
+                SUNDAY
+              </h4>
+              <span class="text-[10px] font-bold text-slate-400 uppercase"
+                >Recovery</span
+              >
+            </div>
+            <div class="space-y-4">
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10">
+                <p
+                  class="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest"
+                >
+                  Morning
+                </p>
+                <p class="text-xs font-bold">
+                  Sleep & Family Time (3–4h). Purpose: Recovery & Social bond.
+                </p>
+              </div>
+              <div class="p-3 bg-white/5 rounded-xl border border-white/10">
+                <p
+                  class="text-[10px] font-black text-slate-400 uppercase mb-1 tracking-widest"
+                >
+                  Afternoon
+                </p>
+                <p class="text-xs font-bold">
+                  Light Jog (30m) & Gaming (2–3h). Purpose: Pure entertainment.
+                </p>
+              </div>
+              <div
+                class="p-3 bg-blue-500/20 rounded-xl border border-blue-500/30"
+              >
+                <p
+                  class="text-[10px] font-black text-blue-400 uppercase mb-1 tracking-widest"
+                >
+                  Master Reset (08:00 PM)
+                </p>
+                <p class="text-xs font-bold">
+                  Reflection & Planning. Purpose: Clarity for next week.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div
+          class="bg-white p-8 rounded-[2.5rem] border border-slate-200 text-center relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-emerald-500 to-indigo-600"
+          ></div>
+          <p class="text-xl font-black italic tracking-tight text-slate-800">
+            "Discipline is the bridge between goals and accomplishment. Control
+            your morning, control your subconscious, control your life."
+          </p>
+          <p
+            class="text-[10px] font-black text-blue-600 uppercase tracking-[0.4em] mt-4"
+          >
+            Growth Intelligence System
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      async function downloadImage() {
+        const chart = document.getElementById("chart-capture");
+        const button = event.currentTarget;
+        button.innerText = "Processing HD Image...";
+        button.disabled = true;
+
+        try {
+          const canvas = await html2canvas(chart, {
+            scale: 3,
+            useCORS: true,
+            backgroundColor: "#f1f5f9",
+            logging: false,
+          });
+          const link = document.createElement("a");
+          link.download = "Elite_Mastery_Protocol_PKT_12hr.png";
+          link.href = canvas.toDataURL("image/png");
+          link.click();
+        } catch (err) {
+          console.error("Save failed", err);
+        } finally {
+          button.innerHTML = "Download HD Image";
+          button.disabled = false;
+        }
+      }
+    </script>
+  </body>
+</html>
