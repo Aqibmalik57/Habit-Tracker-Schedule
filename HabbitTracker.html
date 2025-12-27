@@ -141,36 +141,41 @@
 
         <!-- Routine View (Hidden by default) -->
         <div id="view-routine" class="hidden space-y-8">
+          <!-- Morning Section -->
           <section>
             <h3
               class="flex items-center text-lg font-bold text-orange-600 mb-4"
             >
-              <span class="mr-2">🌅</span> MORNING (5 AM - 9 AM)
+              <span class="mr-2">🌅</span> MORNING
             </h3>
             <div class="space-y-4 border-l-2 border-orange-100 pl-4 ml-2">
               <div>
                 <p class="font-bold text-slate-700">
-                  05:00 - 05:30: Wake & Freshen
+                  5:00 AM - 5:30 AM: Wake & Freshen
                 </p>
                 <p class="text-xs text-slate-500 italic">
                   Clean start, no phone scrolling.
                 </p>
               </div>
               <div>
-                <p class="font-bold text-slate-700">05:30 - 06:00: Mobility</p>
+                <p class="font-bold text-slate-700">
+                  5:30 AM - 6:00 AM: Mobility / Stretching
+                </p>
                 <p class="text-xs text-slate-500 italic">
                   5-10 stretches to wake up the body.
                 </p>
               </div>
               <div>
-                <p class="font-bold text-slate-700">06:00 - 06:30: Breakfast</p>
+                <p class="font-bold text-slate-700">
+                  6:00 AM - 6:30 AM: Breakfast
+                </p>
                 <p class="text-xs text-slate-500 italic">
                   Fuel for the brain and body.
                 </p>
               </div>
               <div>
                 <p class="font-bold text-slate-700 text-blue-600">
-                  06:30 - 09:00: Skill Practice
+                  6:30 AM - 9:00 AM: Skill Practice
                 </p>
                 <p class="text-xs text-slate-500 italic">
                   Coding, problem solving, career building.
@@ -179,6 +184,7 @@
             </div>
           </section>
 
+          <!-- University / Lunch Section -->
           <section>
             <h3 class="flex items-center text-lg font-bold text-blue-600 mb-4">
               <span class="mr-2">🎓</span> UNIVERSITY / LUNCH
@@ -186,49 +192,56 @@
             <div class="space-y-3 bg-blue-50 p-4 rounded-xl">
               <div class="flex justify-between text-sm">
                 <span class="font-medium">Mon Classes:</span>
-                <span>9:30 AM – 4:30 PM</span>
+                <span>9:30 AM - 4:30 PM</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="font-medium">Wed/Thu Classes:</span>
-                <span>7:30 AM – 2:00 PM</span>
+                <span>7:30 AM - 2:00 PM</span>
               </div>
               <div class="flex justify-between text-sm">
                 <span class="font-medium">Sat Classes:</span>
-                <span>1:00 PM – 4:30 PM</span>
+                <span>1:00 PM - 4:30 PM</span>
               </div>
             </div>
           </section>
 
+          <!-- Afternoon Section -->
           <section>
             <h3 class="flex items-center text-lg font-bold text-green-600 mb-4">
-              <span class="mr-2">🏃</span> AFTERNOON (4:30 - 5:30 PM)
+              <span class="mr-2">🏃</span> AFTERNOON
             </h3>
             <div class="bg-green-50 p-4 rounded-xl border border-green-100">
-              <p class="font-bold text-green-800">Daily Jogging</p>
+              <p class="font-bold text-green-800">
+                Daily Jogging / Free Practice
+              </p>
               <p class="text-sm text-green-700 mt-1">
-                Refresh mind, improve stamina, reduce stress.
+                Refresh mind, improve stamina, and continue productive tasks
+                based on day type.
               </p>
               <p class="text-xs mt-2 text-green-600 font-medium">
-                Replaces morning exercise.
+                Replaces morning exercise on Free Days.
               </p>
             </div>
           </section>
 
+          <!-- Evening Section -->
           <section class="pb-10">
             <h3
               class="flex items-center text-lg font-bold text-indigo-600 mb-4"
             >
-              <span class="mr-2">🌇</span> EVENING (5:30 - 9:00 PM)
+              <span class="mr-2">🌇</span> EVENING
             </h3>
             <div class="space-y-4 border-l-2 border-indigo-100 pl-4 ml-2">
               <div>
-                <p class="font-bold text-slate-700">New Learning</p>
-                <p class="text-xs text-slate-500">Concepts, tutorials, docs.</p>
+                <p class="font-bold text-slate-700">New Learning / Revision</p>
+                <p class="text-xs text-slate-500">
+                  Concepts, tutorials, documentation.
+                </p>
               </div>
               <div>
                 <p class="font-bold text-slate-700">Productive Work</p>
                 <p class="text-xs text-slate-500">
-                  Assignments, Projects, YouTube.
+                  Assignments, Projects, YouTube content.
                 </p>
               </div>
               <div>
@@ -236,7 +249,7 @@
                 <p
                   class="text-xs text-slate-500 italic font-medium text-red-400"
                 >
-                  Rule: Stop on time.
+                  Rule: Stop on time to maintain schedule.
                 </p>
               </div>
             </div>
@@ -271,92 +284,103 @@
         Monday: {
           type: "University Day",
           tasks: [
-            { name: "Jogging", time: "45 min" },
-            { name: "Light Stretching", time: "30 min" },
-            { name: "Skill Practice", time: "2.5 hrs" },
-            { name: "Book Reading", time: "30 min" },
-            { name: "University Classes", time: "7.5 hrs" },
-            { name: "New Learning", time: "1 hr" },
-            { name: "Productive Work", time: "1 hr" },
-            { name: "Light Skill Practice", time: "30 min" },
-            { name: "Relax / Fun", time: "30 min" },
-            { name: "Breaks & Meals", time: "2 hrs" },
+            { name: "Wake & Fresh", time: "05:00 AM - 05:30 AM" },
+            { name: "Light Stretch", time: "05:30 AM - 06:00 AM" },
+            { name: "Breakfast", time: "06:00 AM - 06:30 AM" },
+            { name: "Book Reading", time: "06:30 AM - 07:00 AM" },
+            { name: "Get Ready / Travel", time: "07:00 AM - 09:00 AM" },
+            { name: "Uni Classes", time: "09:00 AM - 05:00 PM" },
+            { name: "Jogging (45m)", time: "05:15 PM - 06:00 PM" },
+            { name: "Lunch & Rest", time: "06:00 PM - 07:00 PM" },
+            { name: "Productive Work", time: "07:00 PM - 08:30 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 09:30 PM" },
           ],
         },
         Tuesday: {
           type: "Free Day",
           tasks: [
-            { name: "Jogging", time: "1 hr" },
-            { name: "Skill Practice", time: "3 hrs" },
-            { name: "New Learning", time: "2 hrs" },
-            { name: "Practice", time: "1 hr" },
-            { name: "Productive Work", time: "4 hrs" },
-            { name: "Book Reading", time: "1 hr" },
-            { name: "Fun / Relax", time: "2 hrs" },
-            { name: "Breaks & Meals", time: "3 hrs" },
+            { name: "Wake Up & Fresh", time: "05:00 AM - 05:20 AM" },
+            { name: "Light Stretch", time: "05:20 AM - 05:40 AM" },
+            { name: "Book Reading", time: "05:40 AM - 06:00 AM" },
+            { name: "Breakfast", time: "06:00 AM - 06:30 AM" },
+            { name: "Skill Practice", time: "06:30 AM - 09:30 AM" },
+            { name: "Rest", time: "09:30 AM - 11:30 AM" },
+            { name: "Practice Session", time: "11:30 AM - 12:30 PM" },
+            { name: "Prod Work", time: "01:00 PM - 05:00 PM" },
+            { name: "Jogging (1h)", time: "05:00 PM - 06:00 PM" },
+            { name: "New Learn", time: "06:00 PM - 08:00 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 10:30 PM" },
           ],
         },
         Wednesday: {
           type: "University Day",
           tasks: [
-            { name: "Jogging", time: "45 min" },
-            { name: "Light Stretch", time: "30 min" },
-            { name: "Skill Practice", time: "1.5 hrs" },
-            { name: "New Learning", time: "1 hr" },
-            { name: "Light Revision / Reading", time: "1 hr" },
-            { name: "University Classes", time: "6.5 hrs" },
-            { name: "Book Reading", time: "30 min" },
-            { name: "Fun / Relax", time: "1 hr" },
-            { name: "Breaks & Meals", time: "3 hrs" },
+            { name: "Wake & Fresh", time: "05:00 AM - 05:30 AM" },
+            { name: "Light Stretch", time: "05:30 AM - 06:00 AM" },
+            { name: "Breakfast", time: "06:00 AM - 06:30 AM" },
+            { name: "Uni Classes", time: "07:00 AM - 02:30 PM" },
+            { name: "Lunch & Rest", time: "02:30 PM - 04:30 PM" },
+            { name: "Jogging (45m)", time: "04:30 PM - 05:15 PM" },
+            { name: "Light Stretch", time: "05:15 PM - 05:45 PM" },
+            { name: "Book Reading / Study", time: "06:00 PM - 07:00 PM" },
+            { name: "Revision", time: "07:00 PM - 08:00 PM" },
+            { name: "Light Reading", time: "08:00 PM - 08:30 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 09:30 PM" },
           ],
         },
         Thursday: {
           type: "University Day",
           tasks: [
-            { name: "Jogging", time: "45 min" },
-            { name: "Light Stretch", time: "30 min" },
-            { name: "Skill Practice", time: "1.5 hrs" },
-            { name: "New Learning", time: "1 hr" },
-            { name: "Light Revision", time: "1 hr" },
-            { name: "University Classes", time: "6.5 hrs" },
-            { name: "Book Reading", time: "30 min" },
-            { name: "Fun / Relax", time: "1 hr" },
-            { name: "Breaks & Meals", time: "3 hrs" },
+            { name: "Wake & Fresh", time: "05:00 AM - 05:30 AM" },
+            { name: "Light Stretch", time: "05:30 AM - 06:00 AM" },
+            { name: "Breakfast", time: "06:00 AM - 06:30 AM" },
+            { name: "Uni Classes", time: "07:00 AM - 02:30 PM" },
+            { name: "Lunch & Rest", time: "02:30 PM - 04:30 PM" },
+            { name: "Jogging (45m)", time: "04:30 PM - 05:15 PM" },
+            { name: "Light Stretch", time: "05:15 PM - 05:45 PM" },
+            { name: "Book Reading / Study", time: "06:00 PM - 07:00 PM" },
+            { name: "Revision", time: "07:00 PM - 08:00 PM" },
+            { name: "Light Reading", time: "08:00 PM - 08:30 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 09:30 PM" },
           ],
         },
         Friday: {
           type: "Free Day",
           tasks: [
-            { name: "Jogging", time: "1 hr" },
-            { name: "Skill Practice", time: "3 hrs" },
-            { name: "New Learning", time: "2 hrs" },
-            { name: "Practice", time: "1 hr" },
-            { name: "Productive Work", time: "4 hrs" },
-            { name: "Book Reading", time: "1 hr" },
-            { name: "Fun / Relax", time: "2 hrs" },
-            { name: "Breaks & Meals", time: "3 hrs" },
+            { name: "Wake Up & Fresh", time: "05:00 AM - 05:20 AM" },
+            { name: "Light Stretch", time: "05:20 AM - 05:40 AM" },
+            { name: "Book Reading", time: "05:40 AM - 06:00 AM" },
+            { name: "Breakfast", time: "06:00 AM - 06:30 AM" },
+            { name: "Skill Practice", time: "06:30 AM - 09:30 AM" },
+            { name: "Rest", time: "09:30 AM - 11:30 AM" },
+            { name: "Practice Session", time: "11:30 AM - 12:30 PM" },
+            { name: "Namaz Time", time: "12:30 PM - 02:30 PM" },
+            { name: "Prod Work", time: "02:30 PM - 05:00 PM" },
+            { name: "Jogging (1h)", time: "05:00 PM - 06:00 PM" },
+            { name: "New Learn", time: "06:00 PM - 08:00 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 10:30 PM" },
           ],
         },
         Saturday: {
           type: "University Day",
           tasks: [
-            { name: "Jogging", time: "45 min" },
-            { name: "Skill Practice", time: "3 hrs" },
-            { name: "New Learning", time: "1.5 hrs" },
-            { name: "Practice", time: "1 hr" },
-            { name: "University Classes", time: "5 hrs" },
-            { name: "Book Reading + Light Revision", time: "1 hr" },
-            { name: "Fun / Relax", time: "1 hr" },
-            { name: "Breaks & Meals", time: "3.5 hrs" },
+            { name: "Wake & Fresh", time: "06:00 AM - 06:30 AM" },
+            { name: "Light Stretch", time: "06:30 AM - 07:00 AM" },
+            { name: "Breakfast", time: "07:00 AM - 07:30 AM" },
+            { name: "Book Reading", time: "07:30 AM - 08:00 AM" },
+            { name: "Skill Grind", time: "08:00 AM - 11:30 AM" },
+            { name: "Uni Preparation", time: "11:30 AM - 12:00 PM" },
+            { name: "Uni Classes", time: "12:00 PM - 06:00 PM" },
+            { name: "Productive Work", time: "07:00 PM - 08:30 PM" },
+            { name: "Fun / Relax", time: "08:30 PM - 09:30 PM" },
           ],
         },
         Sunday: {
           type: "Reset Day",
           tasks: [
-            { name: "Rest & Sleep", time: "Flexible" },
-            { name: "Family Time", time: "3–4 hrs" },
+            { name: "Sleep & Family Time", time: "Flexible / 3–4h" },
             { name: "Light Jog / Walk", time: "30 min" },
-            { name: "Gaming / Entertainment", time: "2–3 hrs" },
+            { name: "Gaming / Entertainment", time: "2–3h" },
             { name: "Weekly Reflection", time: "30 min" },
             { name: "Planning for Next Week", time: "30 min" },
           ],
@@ -370,10 +394,10 @@
       function switchTab(tab) {
         document
           .getElementById("view-tracker")
-          .classList.toggle("hidden", tab !== "tracker");
+          ?.classList.toggle("hidden", tab !== "tracker");
         document
           .getElementById("view-routine")
-          .classList.toggle("hidden", tab !== "routine");
+          ?.classList.toggle("hidden", tab !== "routine");
         document.getElementById(
           "tab-tracker"
         ).className = `flex-1 py-4 text-sm font-semibold ${
@@ -389,15 +413,11 @@
       function setDay(day) {
         currentDay = day;
 
-        // Update UI buttons
         document.querySelectorAll(".day-btn").forEach((btn) => {
-          if (btn.innerText === day.substring(0, 3).toUpperCase()) {
-            btn.className =
-              "day-btn px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white shadow-md transition-all";
-          } else {
-            btn.className =
-              "day-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-500";
-          }
+          btn.className =
+            btn.innerText === day.substring(0, 3).toUpperCase()
+              ? "day-btn px-4 py-2 rounded-full text-xs font-bold bg-blue-600 text-white shadow-md transition-all"
+              : "day-btn px-4 py-2 rounded-full text-xs font-bold bg-slate-100 text-slate-500";
         });
 
         document.getElementById(
@@ -405,11 +425,42 @@
         ).innerText = `${day} (${habitData[day].type})`;
         renderHabits();
       }
+      // Parse 12-hour string like "05:30 PM" to Date object
+      function parseTime12Hr(str) {
+        const [time, modifier] = str.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+        if (modifier === "PM" && hours !== 12) hours += 12;
+        if (modifier === "AM" && hours === 12) hours = 0;
+        return { hours, minutes };
+      }
+
+      // Convert 24-hour numbers back to 12-hour format
+      function formatTime12HrFrom24(hours, minutes) {
+        const ampm = hours >= 12 ? "PM" : "AM";
+        const h12 = hours % 12 || 12;
+        return `${h12}:${minutes.toString().padStart(2, "0")} ${ampm}`;
+      }
+
+      // Convert range string like "05:30 AM - 06:00 AM" correctly
+      function convertRangeTo12Hr(rangeStr) {
+        if (!rangeStr.includes("-")) {
+          // if it’s not a range and doesn’t match AM/PM pattern, return as is
+          if (!/AM|PM/i.test(rangeStr)) return rangeStr;
+          const { hours, minutes } = parseTime12Hr(rangeStr);
+          return formatTime12HrFrom24(hours, minutes);
+        }
+        const parts = rangeStr.split("-");
+        const start = parseTime12Hr(parts[0].trim());
+        const end = parseTime12Hr(parts[1].trim());
+        return `${formatTime12HrFrom24(
+          start.hours,
+          start.minutes
+        )} - ${formatTime12HrFrom24(end.hours, end.minutes)}`;
+      }
 
       function renderHabits() {
         const container = document.getElementById("habits-list");
         container.innerHTML = "";
-
         const dayTasks = habitData[currentDay].tasks;
         let completedCount = 0;
 
@@ -418,34 +469,31 @@
           const isDone = completionState[taskId] || false;
           if (isDone) completedCount++;
 
+          const displayTime = convertRangeTo12Hr(task.time);
+
           const item = document.createElement("div");
           item.className = `p-4 rounded-2xl flex justify-between items-center transition-all ${
             isDone
               ? "bg-blue-50 border-blue-100 border"
               : "bg-slate-50 border border-transparent"
           }`;
-
           item.innerHTML = `
-                    <div class="flex-1">
-                        <p class="font-bold ${
-                          isDone
-                            ? "text-blue-700 line-through opacity-70"
-                            : "text-slate-700"
-                        }">${task.name}</p>
-                        <p class="text-xs text-slate-400 font-medium">${
-                          task.time
-                        }</p>
-                    </div>
-                    <button onclick="toggleTask('${taskId}')" class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
+        <div class="flex-1">
+          <p class="font-bold ${
+            isDone ? "text-blue-700 line-through opacity-70" : "text-slate-700"
+          }">${task.name}</p>
+          <p class="text-xs text-slate-400 font-medium">${displayTime}</p>
+        </div>
+        <button onclick="toggleTask('${taskId}')" class="w-8 h-8 rounded-full flex items-center justify-center border-2 transition-all ${
             isDone ? "bg-blue-600 border-blue-600" : "bg-white border-slate-200"
           }">
-                        ${
-                          isDone
-                            ? '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>'
-                            : ""
-                        }
-                    </button>
-                `;
+          ${
+            isDone
+              ? '<svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>'
+              : ""
+          }
+        </button>
+      `;
           container.appendChild(item);
         });
 
