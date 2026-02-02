@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,10 +28,27 @@
     </style>
   </head>
   <body>
-    <h1>Welcome to Weekly Schedule</h1>
+    <h1 id="secretTitle">Welcome to Weekly Schedule</h1>
     <p>Select a page to continue:</p>
 
     <a href="./HabbitTracker.html">Habits Tracker</a>
     <a href="./WeeklyRoutine.html">Weekly Routine</a>
   </body>
+  <script>
+    let taps = 0;
+    let timer;
+
+    document.getElementById("secretTitle").addEventListener("click", () => {
+      taps++;
+
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        taps = 0;
+      }, 1500);
+
+      if (taps === 7) {
+        window.location.href = "./HiddenSelfImprovement.html";
+      }
+    });
+  </script>
 </html>
